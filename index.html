@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>jQuery Playground</title>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #100d1d;
+    color: white;
+    min-height: 100vh;
+    padding: 35px 20px;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    display: inline-block;
+    background: #30234b;
+    color: #c9a8ff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+h1 span {
+    color: #bb8cff;
+}
+
+.subtitle {
+    color: #aaa1bd;
+    font-size: 15px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.card {
+    background: linear-gradient(145deg, #211a35, #181326);
+    border: 1px solid #3c2c56;
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 10px 30px #00000035;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #a477e9;
+}
+
+.full {
+    grid-column: span 2;
+}
+
+.number {
+    color: #b58aff;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+h2 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #aaa1bd;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+button {
+    background: linear-gradient(120deg, #a878ed, #7950c9);
+    color: white;
+    border: none;
+    padding: 12px 21px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 5px 5px 5px 0;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 18px #a878ed55;
+}
+
+.secondary {
+    background: #382b4e;
+}
+
+.keyboard-display {
+    background: #100d1d;
+    border: 1px solid #483361;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.key {
+    font-size: 45px;
+    color: #c7a1ff;
+    font-weight: bold;
+    min-height: 55px;
+}
+
+.key-info {
+    color: #aaa1bd;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.status {
+    color: #c49bff;
+    font-size: 13px;
+    margin-top: 12px;
+}
+
+.panel {
+    background: #302344;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 15px;
+    line-height: 1.8;
+}
+
+.toggle-content {
+    background: #302344;
+    padding: 22px;
+    border-radius: 12px;
+    margin: 15px 0;
+    color: #d8c5f5;
+    line-height: 1.8;
+}
+
+footer {
+    text-align: center;
+    color: #827790;
+    font-size: 13px;
+    padding: 35px 0 10px;
+}
+
+@media(max-width: 650px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full {
+        grid-column: span 1;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <div class="logo">✦ INTERACTIVE LEARNING LAB</div>
+    <h1>jQuery <span>Playground</span></h1>
+    <p class="subtitle">
+        Explore the magic of JavaScript interactions.
+        Click, type and experience!
+    </p>
+</header>
+
+<div class="grid">
+
+<!-- KEYBOARD EVENT -->
+<div class="card">
+    <p class="number">01 / KEYBOARD EVENT</p>
+    <h2>⌨️ Keyboard Explorer</h2>
+    <p class="description">
+        Press any key on your keyboard and watch it appear below.
+    </p>
+
+    <div class="keyboard-display">
+        <div class="key" id="key">?</div>
+        <p class="key-info">YOUR LAST PRESSED KEY</p>
+    </div>
+
+    <p class="status" id="keyStatus">
+        Waiting for your first keypress...
+    </p>
+</div>
+
+<!-- SLIDE UP AND DOWN -->
+<div class="card">
+    <p class="number">02 / SLIDING EFFECT</p>
+    <h2>🎭 Magic Panel</h2>
+    <p class="description">
+        Explore jQuery animation using slideUp and slideDown.
+    </p>
+
+    <button id="slideUp">Slide Up ↑</button>
+    <button id="slideDown" class="secondary">
+        Slide Down ↓
+    </button>
+
+    <div class="panel" id="magicPanel">
+        <h3>✨ Surprise!</h3>
+        <p>
+            You just discovered the magic of jQuery.
+            This panel smoothly slides up and down
+            when you click the buttons.
+        </p>
+    </div>
+</div>
+
+<!-- HIDE AND SHOW -->
+<div class="card full">
+    <p class="number">03 / HIDE & SHOW EFFECT</p>
+    <h2>👀 Reveal the Mystery</h2>
+    <p class="description">
+        Click the button to hide or reveal the secret message.
+    </p>
+
+    <button id="toggleBtn">Hide Content</button>
+
+    <div class="toggle-content" id="secret">
+        <h3>💜 You found the secret!</h3>
+        <p>
+            jQuery makes websites interactive, attractive
+            and fun. Keep experimenting and keep learning!
+        </p>
+    </div>
+</div>
+
+</div>
+
+<footer>
+    Designed with 💜 using HTML, CSS & jQuery
+    <br><br>
+    MY FIRST INTERACTIVE JQUERY PROJECT
+</footer>
+
+</div>
+
+<script>
+
+$(document).ready(function() {
+
+    // 1. KEYBOARD EVENT
+
+    $(document).keydown(function(event) {
+
+        $("#key").text(event.key === " " ? "SPACE" : event.key);
+
+        $("#keyStatus").text(
+            "Key Code: " + event.which +
+            " | Event detected successfully!"
+        );
+
+    });
+
+
+    // 2. SLIDE UP
+
+    $("#slideUp").click(function() {
+
+        $("#magicPanel").slideUp(600);
+
+    });
+
+
+    // SLIDE DOWN
+
+    $("#slideDown").click(function() {
+
+        $("#magicPanel").slideDown(600);
+
+    });
+
+
+    // 3. HIDE AND SHOW TOGGLE
+
+    $("#toggleBtn").click(function() {
+
+        $("#secret").toggle(500);
+
+        if ($("#secret").is(":visible")) {
+
+            $("#toggleBtn").text("Hide Content");
+
+        } else {
+
+            $("#toggleBtn").text("Show Content");
+
+        }
+
+    });
+    
+
+});
+
+</script>
+
+</body>
+</html>
